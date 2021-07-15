@@ -1,6 +1,6 @@
 FROM mysql
 COPY . .
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["bash", "./cmd.sh"]
 VOLUME /var/lib/mysql
 EXPOSE 3306 33060
-CMD ["bash", "./cmd.sh"]
+CMD ["mysqld"]

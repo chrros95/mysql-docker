@@ -1,8 +1,10 @@
 #!/bin/bash
-ARGS=""
+if [ "${1:0:1}" = '-' ]; then
+	set -- mysqld "$@"
+fi
 
 if [ -n "$AUTH_PLUGIN" ];
 then
-   ARGS="$ARGS --default-authentication-plugin=$AUTH_PLUGIN"
+  set -- "$@" "--default-authentication-plugin=$AUTH_PLUGIN"
 fi
-mysqld $ARGS
+/usr/local/bin/docker-entrypoint.sh $@
